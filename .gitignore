@@ -1,0 +1,5 @@
+# Byte-compiled
+__pycache__/
+
+# SQLite database
+db.sqlite3
