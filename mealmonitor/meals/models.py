@@ -26,6 +26,9 @@ class Meal(models.Model):
     food_items = models.ManyToManyField(FoodItem, through='FoodItemMeal')
     date_ate = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 
 class FoodItemMeal(models.Model):
     """
@@ -34,3 +37,6 @@ class FoodItemMeal(models.Model):
     meal = models.ForeignKey(Meal)
     food_item = models.ForeignKey(FoodItem)
     quantity = models.IntegerField()
+
+    def __str__(self):
+        return '{} -> {}, {}g'.format(self.meal, self.food_item, self.quantity)
