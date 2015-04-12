@@ -29,13 +29,15 @@
           <div class="row">
               <div class="col-md-12">
 
+                  {% for meal in meals %}
                   <div class="meal-padding jumbotron">
-                      <h2>Meal #1, <small>08:40</small></h2>
+                      <h2>{{ meal.name }} <small>{{ meal.date_ate|date:"H:i" }}</small></h2>
                       <ul class="list-group">
-                          <li class="list-group-item">Brocolli, 50g</li>
-                          <li class="list-group-item">Chicken breast, 150g</li>
-                          <li class="list-group-item">Green peas, 50g</li>
+                          {% for food in meal.fooditemmeal_set.all %}
+                          <li class="list-group-item">{{ food.food_item.name }}, {{ food.quantity }}g</li>
+                          {% endfor %}
                       </ul>
+                      <!--
                       <div class="row">
                           <form>
                               <div class="col-md-8">
@@ -52,35 +54,12 @@
                                   <button type="submit" class="btn btn-default">Add Food Item</button>
                               </div>
                           </form>
-                      </div>
-
-                  </div>
-                  <div class="meal-padding jumbotron">
-                      <h2>Meal #2, <small>10:45</small></h2>
-                      <ul class="list-group">
-                          <li class="list-group-item">Brocolli, 50g</li>
-                          <li class="list-group-item">Chicken breast, 150g</li>
-                          <li class="list-group-item">Green peas, 50g</li>
-                      </ul>
-                      <div class="row">
-                          <form>
-                              <div class="col-md-8">
-                                  <select class="form-control">
-                                      <option>Chicken Breast</option>
-                                      <option>Brocolli</option>
-                                      <option>Green Peas</option>
-                                  </select>
-                              </div>
-                              <div class="col-md-2">
-                                  <input type="text" class="form-control" placeholder="Weight in grams">
-                              </div>
-                              <div class="col-md-1">
-                                  <button type="submit" class="btn btn-default">Add Food Item</button>
-                              </div>
-                          </form>
-                      </div>
+                          </div> -->
 
                   </div> <!-- end meal -->
+
+
+                  {% endfor %}
 
                   <p>
                       <button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Add Meal</button>
