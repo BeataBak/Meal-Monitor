@@ -3,8 +3,9 @@ from django.contrib import admin
 
 urlpatterns = [
     # Examples:
-    # url(r'^$', 'mealmonitor.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^$', 'meals.views.home', name='home'),
+    url(r'^(?P<date>\d{4}-\d{2}-\d{2})$', 'meals.views.meal_list', name='meal_list'),
     url(r'^admin/', include(admin.site.urls)),
 ]
