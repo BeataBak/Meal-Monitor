@@ -29,6 +29,19 @@ class Meal(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        """
+        Overriden to automatically generate meal names, e.g. 'Meal #3'.
+        """
+        if not self.pk:
+            meal_count = Meal.objects.filter(date_ate__year=self.date_ate.year,
+                                             date_ate__month=self.date_ate.month,
+                                             date_ate__day=self.date_ate.day).count()
+
+            self.name = 'Meal #{}'.format(meal_count + 1)
+
+        super().save(*args, **kwargs)
+
     def total_net_carbs(self):
         """
         Returns the total amount of net carbs in grams in this meal.
