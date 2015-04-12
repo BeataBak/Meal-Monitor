@@ -62,7 +62,12 @@
                   {% endfor %}
 
                   <p>
-                      <button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> Add Meal</button>
+                      <form method="post" action="{% url 'meal_create' date %}">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-primary btn-lg">
+                              <span class="glyphicon glyphicon-plus"></span> Add Meal
+                          </button>
+                      </form>
                   </p>
               </div>
           </div>
