@@ -7,9 +7,9 @@ class FoodItem(models.Model):
     (e.g. Hoegaarden beer) or an ingredient (e.g. chicken).
     """
     name = models.CharField(blank=True, max_length=128)
-    net_carbs = models.IntegerField()
-    fat = models.IntegerField()
-    protein = models.IntegerField()
+    net_carbs = models.FloatField()
+    fat = models.FloatField()
+    protein = models.FloatField()
     calories = models.IntegerField()
 
     def __str__(self):
