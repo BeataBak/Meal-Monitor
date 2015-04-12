@@ -29,6 +29,42 @@ class Meal(models.Model):
     def __str__(self):
         return self.name
 
+    def total_net_carbs(self):
+        """
+        Returns the total amount of net carbs in grams in this meal.
+        """
+        total_net_carbs = 0
+        for food_item in self.food_items.all():
+            total_net_carbs += food_item.net_carbs
+        return total_net_carbs
+
+    def total_fat(self):
+        """
+        Returns the total amount of fat in grams in this meal.
+        """
+        total_fat = 0
+        for food_item in self.food_items.all():
+            total_fat += food_item.fat
+        return total_fat
+
+    def total_protein(self):
+        """
+        Returns the total amount of protein in grams in this meal.
+        """
+        total_protein = 0
+        for food_item in self.food_items.all():
+            total_protein += food_item.protein
+        return total_protein
+
+    def total_calories(self):
+        """
+        Returns the total amount of calories in kcal in this meal.
+        """
+        total_calories = 0
+        for food_item in self.food_items.all():
+            total_calories += food_item.calories
+        return total_calories
+
 
 class FoodItemMeal(models.Model):
     """
