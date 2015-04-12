@@ -12,6 +12,9 @@ class FoodItem(models.Model):
     protein = models.IntegerField()
     calories = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Meal(models.Model):
     """
