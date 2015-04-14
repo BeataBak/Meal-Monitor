@@ -17,6 +17,10 @@
            padding: 10px 30px !important;
            margin: 0 0 1em 0 !important;
         }
+
+        #id_food_item {
+            width: 100%;
+        }
     </style>
   </head>
   <body>
@@ -37,28 +41,23 @@
                           <li class="list-group-item">{{ food.food_item.name }}, {{ food.quantity }}g</li>
                           {% endfor %}
                       </ul>
-                      <!--
-                      <div class="row">
-                          <form>
+                       <div class="row">
+                          <form method="post" action="{% url 'add_food_item' %}">
+                              {% csrf_token %}
+                              <input type="hidden" value="{{ meal.pk }}" name="{{ food_item_form.meal.html_name }}"></input>
+
                               <div class="col-md-8">
-                                  <select class="form-control">
-                                      <option>Chicken Breast</option>
-                                      <option>Brocolli</option>
-                                      <option>Green Peas</option>
-                                  </select>
+                                  {{ food_item_form.food_item }}
                               </div>
                               <div class="col-md-2">
-                                  <input type="text" class="form-control" placeholder="Weight in grams">
+                                  {{ food_item_form.quantity }}
                               </div>
                               <div class="col-md-1">
                                   <button type="submit" class="btn btn-default">Add Food Item</button>
                               </div>
-                          </form>
-                          </div> -->
-
+                            </form>
+                      </div>
                   </div> <!-- end meal -->
-
-
                   {% endfor %}
 
                   <p>
