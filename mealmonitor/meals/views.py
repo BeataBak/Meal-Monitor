@@ -26,7 +26,17 @@ def meal_list(request, date):
                                 date_ate__month=date.month,
                                 date_ate__day=date.day)
 
-    return render(request, 'meal_list.html', {'date': date, 'meals': meals, 'food_item_form': ItemForm()})
+    return render(request, 'meal_list.html',
+        {
+            'date': date,
+            'meals': meals,
+            'food_item_form': ItemForm(),
+            'daily_total_carbs': daily_total_carbs(meals),
+            'daily_total_protein': daily_total_protein(meals),
+            'daily_total_fat': daily_total_fat(meals),
+            'daily_total_calories': daily_total_calories(meals),
+        }
+    )
 
 
 def meal_create(request, date):
@@ -49,3 +59,35 @@ def add_food_item(request):
             form.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def daily_total_carbs(meals):
+
+    daily_total_carbs = 0
+
+    for meal in meals:
+        daily_total_carbs += meal.total_net_carbs()
+    return daily_total_carbs
+
+def daily_total_protein(meals):
+
+    daily_total_protein = 0
+
+    for meal in meals:
+        daily_total_protein += meal.total_protein()
+    return daily_total_protein
+
+def daily_total_fat(meals):
+
+    daily_total_fat = 0
+
+    for meal in meals:
+        daily_total_fat += meal.total_fat()
+    return daily_total_fat
+
+def daily_total_calories(meals):
+
+    daily_total_calories = 0
+
+    for meal in meals:
+        daily_total_calories += meal.total_calories()
+    return daily_total_calories

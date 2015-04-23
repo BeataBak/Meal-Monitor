@@ -18,8 +18,17 @@
            margin: 0 0 1em 0 !important;
         }
 
+        .mydate-padding, .mytotal-padding {
+           padding-top: 111px;
+        }
+
+        .mytotal-padding {
+           padding-left: 70px;
+        }
+
         #id_food_item {
-            width: 100%;
+          width: 100%;
+
         }
     </style>
   </head>
@@ -27,7 +36,18 @@
       <div class="container">
 
           <div class="page-header">
-            <h1>{{ date|date:"l jS F, Y" }}</h1>
+               <div class="row">
+                  <div class="meal-padding col-md-12">
+                      <h2 class="col-md-5 mydate-padding">{{ date|date:"l jS F, Y" }}</h2>
+                      <h2 class="col-md-3 mytotal-padding">Daily Totals:</h2>
+                      <ul class="list-group col-md-4">
+                          <li class="list-group-item">Total Carbs: {{ daily_total_carbs|floatformat:2 }} g</li>
+                          <li class="list-group-item">Total Protein: {{ daily_total_protein|floatformat:2 }}g</li>
+                          <li class="list-group-item">Total Fat: {{ daily_total_fat|floatformat:2 }}g</li>
+                          <li class="list-group-item">Total Calories: {{ daily_total_calories|floatformat:0 }}kcal</li>
+                      </ul>
+                  </div>
+              </div>
           </div>
 
           <div class="row">
@@ -36,17 +56,19 @@
                   {% for meal in meals %}
                   <div class="meal-padding jumbotron">
                       <h2>{{ meal.name }} <small>{{ meal.date_ate|date:"H:i" }}</small></h2>
-                      <ul class="list-group col-md-9">
+                      <div class="row">
+                      <ul class="list-group col-md-8">
                           {% for food in meal.fooditemmeal_set.all %}
                           <li class="list-group-item">{{ food.food_item.name }}, {{ food.quantity }}g</li>
                           {% endfor %}
                       </ul>
-                      <ul class="list-group col-md-3">
+                      <ul class="list-group col-md-4">
                           <li class="list-group-item">Net Carbs: {{ meal.total_net_carbs|floatformat:2 }} g</li>
                           <li class="list-group-item">Protein: {{ meal.total_protein|floatformat:2 }}g</li>
                           <li class="list-group-item">Fat: {{ meal.total_fat|floatformat:2 }}g</li>
                           <li class="list-group-item">Calories: {{ meal.total_calories|floatformat:0 }}kcal</li>
                       </ul>
+                      </div>
                        <div class="row">
                           <form method="post" action="{% url 'add_food_item' %}">
                               {% csrf_token %}
@@ -58,7 +80,7 @@
                               <div class="col-md-2">
                                   {{ food_item_form.quantity }}
                               </div>
-                              <div class="col-md-1">
+                              <div class="col-md-2">
                                   <button type="submit" class="btn btn-default">Add Food Item</button>
                               </div>
                             </form>
