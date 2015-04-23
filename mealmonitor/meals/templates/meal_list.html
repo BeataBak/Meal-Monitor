@@ -36,10 +36,16 @@
                   {% for meal in meals %}
                   <div class="meal-padding jumbotron">
                       <h2>{{ meal.name }} <small>{{ meal.date_ate|date:"H:i" }}</small></h2>
-                      <ul class="list-group">
+                      <ul class="list-group col-md-9">
                           {% for food in meal.fooditemmeal_set.all %}
                           <li class="list-group-item">{{ food.food_item.name }}, {{ food.quantity }}g</li>
                           {% endfor %}
+                      </ul>
+                      <ul class="list-group col-md-3">
+                          <li class="list-group-item">Net Carbs: {{ meal.total_net_carbs|floatformat:2 }} g</li>
+                          <li class="list-group-item">Protein: {{ meal.total_protein|floatformat:2 }}g</li>
+                          <li class="list-group-item">Fat: {{ meal.total_fat|floatformat:2 }}g</li>
+                          <li class="list-group-item">Calories: {{ meal.total_calories|floatformat:0 }}kcal</li>
                       </ul>
                        <div class="row">
                           <form method="post" action="{% url 'add_food_item' %}">

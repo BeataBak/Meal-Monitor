@@ -47,8 +47,8 @@ class Meal(models.Model):
         Returns the total amount of net carbs in grams in this meal.
         """
         total_net_carbs = 0
-        for food_item in self.food_items.all():
-            total_net_carbs += food_item.net_carbs
+        for food_item in self.fooditemmeal_set.all():
+            total_net_carbs += food_item.food_item.net_carbs*food_item.quantity/100
         return total_net_carbs
 
     def total_fat(self):
@@ -56,8 +56,8 @@ class Meal(models.Model):
         Returns the total amount of fat in grams in this meal.
         """
         total_fat = 0
-        for food_item in self.food_items.all():
-            total_fat += food_item.fat
+        for food_item in self.fooditemmeal_set.all():
+            total_fat += food_item.food_item.fat*food_item.quantity/100
         return total_fat
 
     def total_protein(self):
@@ -65,8 +65,8 @@ class Meal(models.Model):
         Returns the total amount of protein in grams in this meal.
         """
         total_protein = 0
-        for food_item in self.food_items.all():
-            total_protein += food_item.protein
+        for food_item in self.fooditemmeal_set.all():
+            total_protein += food_item.food_item.protein*food_item.quantity/100
         return total_protein
 
     def total_calories(self):
@@ -74,8 +74,8 @@ class Meal(models.Model):
         Returns the total amount of calories in kcal in this meal.
         """
         total_calories = 0
-        for food_item in self.food_items.all():
-            total_calories += food_item.calories
+        for food_item in self.fooditemmeal_set.all():
+            total_calories += food_item.food_item.calories*food_item.quantity/100
         return total_calories
 
 
