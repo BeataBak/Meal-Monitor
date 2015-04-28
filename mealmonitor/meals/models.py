@@ -11,6 +11,7 @@ class FoodItem(models.Model):
     fat = models.FloatField(help_text='per 100g')
     protein = models.FloatField(help_text='per 100g')
     calories = models.IntegerField(help_text='per 100g')
+    is_foundation_vegatable = models.BooleanField(default = False)
 
     def __str__(self):
         return self.name
