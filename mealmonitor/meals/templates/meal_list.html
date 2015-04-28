@@ -41,6 +41,7 @@
                       <h2 class="col-md-5 mydate-padding">{{ date|date:"l jS F, Y" }}</h2>
                       <h2 class="col-md-3 mytotal-padding">Daily Totals:</h2>
                       <ul class="list-group col-md-4">
+                          <li class="list-group-item">Total Foundaton Carbs: {{ daily_total_foundation_carbs|floatformat:2 }} g</li>
                           <li class="list-group-item">Total Carbs: {{ daily_total_carbs|floatformat:2 }} g</li>
                           <li class="list-group-item">Total Protein: {{ daily_total_protein|floatformat:2 }}g</li>
                           <li class="list-group-item">Total Fat: {{ daily_total_fat|floatformat:2 }}g</li>
@@ -63,6 +64,7 @@
                           {% endfor %}
                       </ul>
                       <ul class="list-group col-md-4">
+                          <li class="list-group-item">Foundation Veg Net Carbs: {{ meal.total_foundation_carbs|floatformat:2 }} g</li>
                           <li class="list-group-item">Net Carbs: {{ meal.total_net_carbs|floatformat:2 }} g</li>
                           <li class="list-group-item">Protein: {{ meal.total_protein|floatformat:2 }}g</li>
                           <li class="list-group-item">Fat: {{ meal.total_fat|floatformat:2 }}g</li>

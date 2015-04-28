@@ -35,6 +35,7 @@ def meal_list(request, date):
             'daily_total_protein': daily_total_protein(meals),
             'daily_total_fat': daily_total_fat(meals),
             'daily_total_calories': daily_total_calories(meals),
+            'daily_total_foundation_carbs': daily_total_foundation_carbs(meals),
         }
     )
 
@@ -91,3 +92,13 @@ def daily_total_calories(meals):
     for meal in meals:
         daily_total_calories += meal.total_calories()
     return daily_total_calories
+
+def daily_total_foundation_carbs(meals):
+
+    daily_total_foundation_carbs = 0
+
+    for meal in meals:
+        daily_total_foundation_carbs += meal.total_foundation_carbs()
+    return daily_total_foundation_carbs
+
+

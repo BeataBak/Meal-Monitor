@@ -79,6 +79,15 @@ class Meal(models.Model):
             total_calories += food_item.food_item.calories*food_item.quantity/100
         return total_calories
 
+    def total_foundation_carbs(self):
+        """
+        Returns the total amount of net carbs in grams in this meal from foundation vegatables.
+        """
+        total_foundation_carbs = 0
+        for food_item in self.fooditemmeal_set.filter(food_item__is_foundation_vegatable = True):
+            total_foundation_carbs += food_item.food_item.net_carbs*food_item.quantity/100
+        return total_foundation_carbs
+
 
 class FoodItemMeal(models.Model):
     """
