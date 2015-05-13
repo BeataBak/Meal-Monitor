@@ -34,7 +34,7 @@ class Meal(models.Model):
         """
         Overriden to automatically generate meal names, e.g. 'Meal #3'.
         """
-        if not self.pk:
+        if not self.pk and not self.name:
             meal_count = Meal.objects.filter(date_ate__year=self.date_ate.year,
                                              date_ate__month=self.date_ate.month,
                                              date_ate__day=self.date_ate.day).count()
