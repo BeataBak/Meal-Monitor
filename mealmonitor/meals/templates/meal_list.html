@@ -42,9 +42,9 @@
                       <h2 class="col-md-3 mytotal-padding">Daily Totals:</h2>
                       <ul class="list-group col-md-4">
                           <li class="list-group-item">Total Foundaton Carbs: {{ daily_total_foundation_carbs|floatformat:2 }} g</li>
-                          <li class="list-group-item">Total Carbs: {{ daily_total_carbs|floatformat:2 }} g</li>
-                          <li class="list-group-item">Total Protein: {{ daily_total_protein|floatformat:2 }}g</li>
-                          <li class="list-group-item">Total Fat: {{ daily_total_fat|floatformat:2 }}g</li>
+                          <li class="list-group-item">Total Carbs: {{ daily_total_carbs|floatformat:2 }} g, {{ daily_total_carbs_percentage|floatformat:2 }} %</li>
+                          <li class="list-group-item">Total Protein: {{ daily_total_protein|floatformat:2 }}g, {{ daily_total_protein_percentage|floatformat:2 }} %</li>
+                          <li class="list-group-item">Total Fat: {{ daily_total_fat|floatformat:2 }}g, {{ daily_total_fat_percentage|floatformat:2 }} %</li>
                           <li class="list-group-item">Total Calories: {{ daily_total_calories|floatformat:0 }}kcal</li>
                       </ul>
                   </div>

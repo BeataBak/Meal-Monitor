@@ -36,6 +36,9 @@ def meal_list(request, date):
             'daily_total_fat': daily_total_fat(meals),
             'daily_total_calories': daily_total_calories(meals),
             'daily_total_foundation_carbs': daily_total_foundation_carbs(meals),
+            'daily_total_carbs_percentage': daily_total_carbs_percentage(meals),
+            'daily_total_protein_percentage': daily_total_protein_percentage(meals),
+            'daily_total_fat_percentage': daily_total_fat_percentage(meals),
         }
     )
 
@@ -69,6 +72,15 @@ def daily_total_carbs(meals):
         daily_total_carbs += meal.total_net_carbs()
     return daily_total_carbs
 
+def daily_total_carbs_percentage(meals):
+    try:
+        daily_carbs_percentage = daily_total_carbs(meals) * 4.00/daily_total_calories(meals)
+    except ZeroDivisionError:
+        return 0
+
+    return daily_carbs_percentage*100
+
+
 def daily_total_protein(meals):
 
     daily_total_protein = 0
@@ -77,6 +89,14 @@ def daily_total_protein(meals):
         daily_total_protein += meal.total_protein()
     return daily_total_protein
 
+def daily_total_protein_percentage(meals):
+    try:
+        daily_protein_percentage = daily_total_protein(meals) * 4.00/daily_total_calories(meals)
+    except ZeroDivisionError:
+        return 0
+
+    return daily_protein_percentage*100
+
 def daily_total_fat(meals):
 
     daily_total_fat = 0
@@ -84,6 +104,14 @@ def daily_total_fat(meals):
     for meal in meals:
         daily_total_fat += meal.total_fat()
     return daily_total_fat
+
+def daily_total_fat_percentage(meals):
+    try:
+        daily_fat_percentage = daily_total_fat(meals) * 9.00/daily_total_calories(meals)
+    except ZeroDivisionError:
+        return 0
+
+    return daily_fat_percentage*100
 
 def daily_total_calories(meals):
 
@@ -100,5 +128,3 @@ def daily_total_foundation_carbs(meals):
     for meal in meals:
         daily_total_foundation_carbs += meal.total_foundation_carbs()
     return daily_total_foundation_carbs
-
-
